@@ -1,0 +1,425 @@
+
+
+<CreateAccountWindow>:
+    name: "create"
+    namee: namee
+    email: email
+    password: passw
+
+    canvas.before:
+        Color:
+            rgba:(0, 128, 0, 0.5)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Image:
+        source: "img/11.png"
+        allow_stretch: True
+        keep_ratio: False
+        size_hint: (1, 1)
+
+
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "建立帳號"
+                color: 0, 0, 0, 1
+                font_name: 'SourceHanSerifTW-Regular.otf'
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.1, "top":1}
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0.17, "top":0.8}
+                markup: True
+                text: "姓名:"
+                color: 0, 0, 0, 1
+                font_name: 'SourceHanSerifTW-Regular.otf'
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8}
+                size_hint: 0.4, 0.12
+                id: namee
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0.12, "top":0.8-0.13}
+                text: "電子郵件: "
+                color: 0, 0, 0, 1
+                font_name: 'SourceHanSerifTW-Regular.otf'
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13}
+                size_hint: 0.4, 0.12
+                id: email
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0.17, "top":0.8-0.13*2}
+                text: "密碼: "
+                color: 0, 0, 0, 1
+                font_name: 'SourceHanSerifTW-Regular.otf'
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                size_hint: 0.4, 0.12
+                id: passw
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+        Button:
+            pos_hint:{"x":0.4,"y":0.025}
+            size_hint: 0.4, 0.15
+            font_size: 60
+            text: "已經有帳號? 登入"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            on_release:
+                root.manager.transition.direction = "left"
+                root.login()
+
+        Button:
+            pos_hint:{"x":0.4,"y":0.2}
+            size_hint: 0.2, 0.15
+            font_size: 60
+            text: "確認"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+
+<LoginWindow>:
+    name: "login"
+
+    email: email
+    password: password
+
+    canvas.before:
+        Color:
+            rgba:(0, 128, 0, 0.5)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Image:
+        source: "img/11.png"
+        allow_stretch: True
+        keep_ratio: False
+        size_hint: (1, 1)
+
+
+
+
+    FloatLayout:
+
+        Label:
+            text: "電子郵件:"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.1, "top":0.9}
+            size_hint: 0.35, 0.15
+            color: 0, 0, 0, 1
+
+        TextInput:
+            id: email
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            pos_hint: {"x": 0.45 , "top":0.9}
+            size_hint: 0.4, 0.15
+
+        Label:
+
+            text:"密碼: "
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.18, "top":0.7}
+            size_hint: 0.35, 0.15
+            color: 0, 0, 0, 1
+
+        TextInput:
+            id: password
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            password: True
+            pos_hint: {"x": 0.45, "top":0.7}
+            size_hint: 0.4, 0.15
+
+        Button:
+            pos_hint:{"x":0.4,"y":0.3}
+            size_hint: 0.2, 0.15
+            font_size: 60
+            text: "登入"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            on_release:
+                root.manager.transition.direction = "up"
+                root.loginBtn()
+
+        Button:
+            pos_hint:{"x":0.4,"y":0.1}
+            size_hint: 0.4, 0.15
+            font_size: 60
+            text: "沒有帳號? 建立"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
+
+
+<MainWindow>:
+    n: n
+    email: email
+    created:created
+
+    FloatLayout:
+        Label:
+            id: n
+            pos_hint:{"x": 0.1, "top":0.9}
+            size_hint:0.8, 0.2
+            text: "帳戶名稱: "
+            font_size: (root.width**2 + root.height**2) / 13**4
+            font_name: 'SourceHanSerifTW-Regular.otf'
+
+
+        Label:
+            id: email
+            pos_hint:{"x": 0.1, "top":0.7}
+            size_hint:0.8, 0.2
+            text: "電子郵件: "
+            font_size: (root.width**2 + root.height**2) / 13**4
+            font_name: 'SourceHanSerifTW-Regular.otf'
+
+        Label:
+            id: created
+            pos_hint:{"x": 0.1, "top":0.5}
+            size_hint:0.8, 0.2
+            text: "Created: "
+            font_size: (root.width**2 + root.height**2) / 13**4
+            font_name: 'SourceHanSerifTW-Regular.otf'
+
+        Button:
+            pos_hint:{"x":0.2, "y": 0.1}
+            size_hint:0.6,0.2
+            text: "繼續"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            on_release:
+                app.root.current = "badminton"
+                root.manager.transition.direction = "down"
+
+<BadmintonWindow>:
+    name: "badminton"
+
+    FloatLayout:
+
+        canvas.before:
+            Color:
+                rgba:(0, 128, 0, 0.5)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Image:
+            source: "img/11.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: (1, 1)
+
+        Button:
+            text: "即時辨識"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 60
+            size_hint: 0.3, 0.25
+            pos_hint:{"center_x": 0.5, "center_y": 0.5}
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "left"
+
+        
+        Button:
+            pos_hint:{"x":0, "top": 1}
+            size_hint: 0.2, 0.15
+            font_size: 60
+            text: "登出"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
+
+<FirstWindow>:
+    name: "first"
+
+    FloatLayout:
+
+        canvas.before:
+            Color:
+                rgba:(0, 128, 0, 0.5)
+            Rectangle:
+                source: "img/badminton.jpg"
+                pos: self.pos
+                size: self.size
+        Button:
+            text: "正手長球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.1,"y":0.6}
+            on_release:
+
+                root.manager.transition.direction = "left"
+        Button:
+            text: "反手長球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.1,"y":0.3}
+            on_release:
+
+                root.manager.transition.direction = "left"
+        Button:
+            text: "正手小球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.4,"y":0.6}
+            on_release:
+
+                root.manager.transition.direction = "left"
+        Button:
+            text: "反手小球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.4,"y":0.3}
+            on_release:
+
+                root.manager.transition.direction = "left"
+        Button:
+            text: "正手挑球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.7,"y":0.6}
+            on_release:
+
+                root.manager.transition.direction = "left"
+        Button:
+            text: "反手挑球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.7,"y":0.3}
+            on_release:
+
+                root.manager.transition.direction = "left"
+        Button:
+            pos_hint:{"x":0.1,"y":0.05}
+            size_hint: 0.4, 0.2
+            font_size: 50
+            text: "選擇檔案"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            on_release:
+                root.manager.transition.direction = "up"
+        Button:
+            text: "返回"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.55,"y":0.05}
+            on_release:
+                app.root.current = "badminton"
+                root.manager.transition.direction = "right"
+
+<SecondWindow>:
+    name: "second"
+    FloatLayout:
+
+        canvas.before:
+            Color:
+                rgba:(0, 128, 0, 0.5)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Image:
+            source: "img/11.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: (1, 1)
+
+        Button:
+            text: "正手長球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.1,"y":0.6}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.Long_ball()
+
+
+        Button:
+            text: "反手長球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.1,"y":0.3}
+            on_release:
+                root.Long_ball_back()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "正手小球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.4,"y":0.6}
+            on_release:
+                root.Small_ball()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "反手小球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.4,"y":0.3}
+            on_release:
+                root.Small_ball_back()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "正手挑球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.7,"y":0.6}
+            on_release:
+                root.Pick_ball()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "反手挑球"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            font_size: 50
+            size_hint: 0.2, 0.2
+            pos_hint:{"x":0.7,"y":0.3}
+            on_release:
+                root.Pick_ball_back()
+                root.manager.transition.direction = "left"
+        Button:
+            text: "返回"
+            font_name: 'SourceHanSerifTW-Regular.otf'
+            pos_hint:{"x":0, "top": 1}
+            size_hint: 0.2, 0.15
+            font_size: 50
+            on_release:
+                app.root.current = "badminton"
+                root.manager.transition.direction = "right"
